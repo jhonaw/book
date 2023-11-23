@@ -4,7 +4,7 @@ declare(strict_types=1);
 /*
  *  Include necessary files 
  */
-include_once '../sys/core/init.inc.php';
+include_once __DIR__ . '/../sys/core/init.inc.php';
 
 /*
  *  Load the calendar for january 

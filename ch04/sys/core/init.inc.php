@@ -4,7 +4,7 @@ declare(strict_types=1);
 /*
  *  Include the necessary configuration info 
  */
-include_once '../config/db-cred.inc.php';
+include_once __DIR__ . '/../config/db-cred.inc.php';
 
 /*
  *  Define constants for configuration info 
@@ -22,15 +22,13 @@ $dbo = new PDO($dsn, DB_USER, DB_PASS);
 /*
  *  Define the auto-load function for classes 
  */
-function my_autoloader($class)
-{
-    $filename = '..sys/class/class.' . $class . '.inc.php';
+
+spl_autoload_register(function ($class) {
+    $filename = __DIR__ . '/../class/class.' . $class . '.inc.php';
     if (file_exists($filename)) {
         include_once $filename;
     }
-}
-
-spl_autoload_register('my_autoloader'); 
+}); 
 
 
 ?>
