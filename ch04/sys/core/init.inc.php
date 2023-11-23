@@ -22,10 +22,15 @@ $dbo = new PDO($dsn, DB_USER, DB_PASS);
 /*
  *  Define the auto-load function for classes 
  */
-function spl_autoload_register($class) {
-    $filename = '..sys/class/class.' . $class . ".inc.php";
+function my_autoloader($class)
+{
+    $filename = '..sys/class/class.' . $class . '.inc.php';
     if (file_exists($filename)) {
         include_once $filename;
     }
 }
+
+spl_autoload_register('my_autoloader'); 
+
+
 ?>

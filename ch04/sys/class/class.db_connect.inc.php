@@ -37,7 +37,8 @@ declare(strict_types=1);
             $dsn = "mysql:host=" . DB_HOST . ";dbname=" . DB_NAME;
             try {
                 $this->db = new PDO($dsn, DB_USER, DB_PASS);
-            } catch(Exception $e) {
+            } 
+            catch(Exception $e) {
                 // If the DB connection fails, output the error
                 die ($e->getMessage());
             }
