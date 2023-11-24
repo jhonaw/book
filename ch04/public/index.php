@@ -12,7 +12,7 @@ include_once __DIR__ . '/../sys/core/init.inc.php';
 $cal = new Calendar($dbo, "2016-01-01 12:00:00");
 
 if (is_object($cal)) {
-    echo "<pre>" . var_dump($cal) . "</pre>";
+    //echo var_dump($cal->_loadEventData());
 }
 
 ?>
