@@ -73,7 +73,36 @@ declare(strict_types=1);
          * a database object
          */
         parent::__construct($dbo);
-    }
+        
+        /*
+         *  Gather and store data relevant to the month 
+         */
+        if (isset($useDate)) {
+            $this->_useDate = $useDate;
+        } else {
+            $this->_useDate = date('Y-m-d H:i:s');
+        }
+
+        /*
+         *  Conver to a timestamp, then determine the month
+         * and year to use when building the calendar 
+         */
+
+        $ts = strtotime($this->_useDate);
+        $this->_m = (int)date('m', $ts);
+        $this->_y = (int)date('Y', $ts);
+
+        /*
+         * Determine how many days in the month 
+         */
+        $this->_daysInMonth = cal_days_in_month(CAL_GREGORIAN, $this->_m, $this->_y);
+        
+        /*
+         *  Determine what weekday the month starts on 
+         */
+        $ts = mktime(0, 0, 0, $this->_m, 1, $this->_y);
+        $this->_startDay = (int)date('w', $ts);
+        }
  }
 
 ?>
