@@ -187,6 +187,38 @@ declare(strict_types=1);
         }
         return $events;
     }
+
+    /**
+     * Return HTML markup to display the calendar and evetns
+     * 
+     * Using the information stored in class properties, the
+     * events for the given month are loaded, the calendar is
+     * generated, and the whole thing is returned as valid markup.S
+     */
+    public function buildCalendar() {
+        /*
+         *  Determine the calendar month and create an array of
+         * weekday abbreviations to label the calendar columns 
+         */
+        $cal_month = date('F Y', strtotime($this->_useDate));
+        define('WEEKDAYS', array('Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'));
+
+        /*
+         *  Add a header to the calendar markup 
+         */
+        $html = "\n\t<h2>$cal_month</h2>";
+        for($d=0, $labels=NULL; $d < 7; ++$d) {
+            $labels .= "\n\t\t<li>" . WEEKDAYS[$d] . "</li>";
+        }
+
+        $html .= "\n\t<ul class=\"weekdays\">" . $labels . "\n\t</ul>";
+
+        /*
+         *  Return the markup for output 
+         */
+        return $html;
+    }
+
 }
-// pagina 148
+// pagina 149
 ?>

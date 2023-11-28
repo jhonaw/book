@@ -13,6 +13,7 @@ $cal = new Calendar($dbo, "2016-01-01 12:00:00");
 
 if (is_object($cal)) {
     //echo var_dump($cal->_loadEventData());
+    echo $cal->buildCalendar();
 }
 
 ?>
