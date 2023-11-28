@@ -159,6 +159,34 @@ declare(strict_types=1);
             }
         }
     }
+
+    /**
+     * Loads all events for the month into an array
+     * 
+     * @return array events info
+     */
+    private function _createEventObj() {
+        /*
+         *  Load the events array 
+         */
+        $arr = $this->_loadEventData();
+
+        /*
+         *  Create a new array, then organize the events
+         * by the day of the month on which they occur 
+         */
+        $events = array();
+        foreach ($arr as $event) {
+            $day = date('j', strtotime($event['event_Start']));
+
+            try {
+                $events[$day][] = new Event($event);
+            } catch ( Exception $e) {
+                die ($e->getMessage());
+            }
+        }
+        return $events;
+    }
 }
-// pagina 143
+// pagina 148
 ?>
